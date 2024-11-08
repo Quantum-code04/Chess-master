@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.chess</groupId>
+    <artifactId>BlackWidow</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    
+    <name>BlackWidow Chess</name>
+    <description>Build file for BlackWidow Chess</description>
+    
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <main.class>com.chess.BlackWidow</main.class>
+    </properties>
+    
+    <dependencies>
+        <!-- Add any external libraries here, replacing xyz.jar with Maven dependencies if available -->
+        <dependency>
+            <groupId>your.library.group</groupId>
+            <artifactId>xyz</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <outputDirectory>build</outputDirectory>
+        
+        <resources>
+            <!-- Include non-java files from resources directory -->
+            <resource>
+                <directory>art</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        
+        <plugins>
+            <!-- Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/tests/**/*.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            
+            <!-- JAR Plugin for building the executable JAR with resources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${main.class}</mainClass>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
+            </plugin>
+            
+            <!-- Clean Plugin (automatic in Maven, added for reference) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
