@@ -5,7 +5,8 @@ This project involves developing a fully functional chess game using Java. The g
 
 
 
-// project Structure 
+# project Structure 
+
 ChessGameProject/
 ├── src/
 │   └── com/
